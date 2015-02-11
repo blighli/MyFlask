@@ -1,0 +1,13 @@
+{% macro text(label,name) %}
+    <div class="row form-row">
+        <label class="form-label">{{ label }}:</label>
+        <input type="text" name="{{ name }}" class="form-control">
+    </div>
+{% endmacro %}
+
+{% macro button(back) %}
+    <div class="row form-row-button">
+        <button class="btn btn-primary" type="submit">保存</button>
+        {% if back %}<a class="btn btn-default" href="{{ url_for(back) }}">返回</a>{% endif %}
+    </div>
+{% endmacro %}

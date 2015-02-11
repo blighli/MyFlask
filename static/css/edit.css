@@ -1,0 +1,25 @@
+.form-edit {
+    max-width: 500px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.form-row {
+    margin-bottom: 5px;
+}
+
+.form-row-button {
+    margin-top:15px;
+    text-align: center;
+}
+
+.form-label {
+    display: inline;
+    width: 80px;
+    margin-right: 20px;
+}
+
+.form-control {
+    display: inline;
+    width: 400px;
+}

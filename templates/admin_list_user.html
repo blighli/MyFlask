@@ -1,0 +1,17 @@
+{% extends "admin_list_base.html" %}
+{% block activeMenu %}menu1{% endblock %}
+{% block mainTitle %}数据列表{% endblock %}
+{% block tableHead %}
+    <th>#</th>
+    <th>Header</th>
+    <th>Header</th>
+    <th>Header</th>
+    <th>Header</th>
+{% endblock %}
+{% block tableRow %}
+    <td>{{ item }}</td>
+    <td><a href="{{ url_for('edit_html') }}">Lorem</a></td>
+    <td>ipsum</td>
+    <td>dolor</td>
+    <td>sit</td>
+{% endblock %}

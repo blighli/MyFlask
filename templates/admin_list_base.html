@@ -1,0 +1,23 @@
+{% extends "admin_common_base.html" %}
+{% block css %}
+    <link href="{{ url_for('static',filename='css/admin.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block mainContent %}
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            {% block tableHead %}
+            {% endblock %}
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in items %}
+            <tr>
+                {% block tableRow scoped %}
+                {% endblock %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

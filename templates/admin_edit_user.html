@@ -1,0 +1,10 @@
+{% extends "admin_edit_base.html" %}
+{% block activeMenu %}menu2{% endblock %}
+{% block mainTitle %}编辑数据{% endblock %}
+{% block mainContent %}
+    <form class="form-edit" action="{{ url_for('admin_html') }}">
+        {{ form.text("字段1","field1") }}
+        {{ form.text("字段2","field2") }}
+        {{ form.button("admin_html") }}
+    </form>
+{% endblock %}
