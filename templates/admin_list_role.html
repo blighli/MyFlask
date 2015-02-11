@@ -1,6 +1,6 @@
 {% extends "admin_list_base.html" %}
-{% block activeMenu %}menu1{% endblock %}
-{% block mainTitle %}数据列表{% endblock %}
+{% set activeMenu = "menu_role_list" %}
+{% block mainTitle %}角色管理{% endblock %}
 {% block tableHead %}
     <th>#</th>
     <th>Header</th>
@@ -10,8 +10,8 @@
 {% endblock %}
 {% block tableRow %}
     <td>{{ item }}</td>
-    <td><a href="{{ url_for('edit_html') }}">Lorem</a></td>
-    <td>ipsum</td>
-    <td>dolor</td>
+    <td><a href="{{ url_for('admin_edit_role',roleId=item) }}">Lorem</a></td>
+    <td>ipsum </td>
+    <td>dolor </td>
     <td>sit</td>
 {% endblock %}

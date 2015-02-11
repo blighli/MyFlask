@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>管理系统</title>
     <link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static',filename='css/admin_base.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/bootstrap-theme.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/admin.css') }}" rel="stylesheet">
     {% block css %}{% endblock %}
 </head>
 <body>
@@ -36,15 +37,13 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li id="menu1"><a href="{{ url_for('admin_html') }}">菜单1</a></li>
-                <li id="menu2"><a href="{{ url_for('edit_html') }}">菜单2</a></li>
+                <li id="menu_role_list"><a href="{{ url_for('admin_list_role') }}">角色管理</a></li>
+                <li id="menu2"><a href="{{ url_for('admin_list_role') }}">菜单2</a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">{% block mainTitle %}{% endblock %}</h1>
-            <div class="table-responsive">
-                {% block mainContent %}{% endblock %}
-            </div>
+            {% block mainContent %}{% endblock %}
         </div>
     </div>
 </div>
@@ -54,7 +53,9 @@
 <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
 {% block js %}{% endblock %}
 <script>
-    $("#{% block activeMenu %}{% endblock %}").addClass("active");
+    $(function(){
+        $("#{{ activeMenu }}").addClass("active");
+    });
 </script>
 </body>
 </html>

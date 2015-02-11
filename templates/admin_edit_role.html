@@ -1,0 +1,11 @@
+{% extends "admin_edit_base.html" %}
+{% set activeMenu = "menu_role_list" %}
+{% block mainTitle %}角色信息{% endblock %}
+{% block mainContent %}
+    <form class="form-horizontal" method="post" action="{{ url_for('admin_edit_role', roleId=roleId) }}">
+        {{ form.hidden_tag() }}
+        {{ render_text(form.name) }}
+        {{ render_text(form.desc) }}
+        {{ render_button("admin_list_role") }}
+    </form>
+{% endblock %}
