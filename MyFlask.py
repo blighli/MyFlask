@@ -2,23 +2,30 @@ from flask import Flask, redirect, url_for, render_template
 
 
 from flask.ext.wtf import Form
-from wtforms import StringField
+from wtforms import StringField, SelectMultipleField
 from wtforms.validators import DataRequired, Length
 
 
 funcs = {
     "a": "Name of a",
-    "a.b": "Name of a.b",
+    "a.1": "Name of a.1",
+    "a.2": "Name of a.2",
+    "a.3": "Name of a.3",
+    "a.4": "Name of a.4",
     "b": "Name of b",
-    "b.c": "Name of b.c"
+    "b.1": "Name of b.1",
+    "b.2": "Name of b.2",
+    "b.3": "Name of b.3",
+    "b.4": "Name of b.4",
+    "b.5": "Name of b.5"
 }
-
 
 class RoleForm(Form):
     class Meta:
         locales = ["zh_CN"]
-    name = StringField("Name",validators=[DataRequired(), Length(min=6,max=10)])
-    desc = StringField("Desc",validators=[DataRequired()])
+    name = StringField("角色",validators=[DataRequired()])
+    desc = StringField("描述",validators=[DataRequired()])
+    funcs = SelectMultipleField("权限", choices=sorted([(k,v) for k,v in funcs.items()]))
 
 
 app = Flask(__name__)
@@ -34,13 +41,16 @@ def index():
 def admin_edit_role(roleId):
     form = RoleForm()
     if form.validate_on_submit():
+        print(form.name.data)
+        print(form.desc.data)
+        print(form.funcs.data)
         return redirect(url_for("admin_list_role"))
     return render_template("admin_edit_role.html", form=form, roleId=roleId)
 
 
 @app.route('/admin/roles/')
 def admin_list_role():
-    items = range(1,5)
+    items = range(0,100)
     return render_template("admin_list_role.html", items=items)
 
 
