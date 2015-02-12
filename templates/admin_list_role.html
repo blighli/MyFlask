@@ -2,16 +2,12 @@
 {% set activeMenu = "menu_role_list" %}
 {% block mainTitle %}角色管理{% endblock %}
 {% block tableHead %}
-    <th>#</th>
-    <th>Header</th>
-    <th>Header</th>
-    <th>Header</th>
-    <th>Header</th>
+    <td class="table_item_all"></td>
+    <th>角色名称</th>
+    <th>描述</th>
 {% endblock %}
 {% block tableRow %}
-    <td>{{ item }}</td>
-    <td><a href="{{ url_for('admin_edit_role',roleId=item) }}">Lorem</a></td>
-    <td>ipsum </td>
-    <td>dolor </td>
-    <td>sit</td>
+    <td class="table_item_id">{{ item }}</td>
+    <td><a href="{{ url_for('admin_edit_role',roleId=item) }}">管理员</a></td>
+    <td>负责系统的日常维护工作</td>
 {% endblock %}

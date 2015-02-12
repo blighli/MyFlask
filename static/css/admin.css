@@ -1,6 +1,5 @@
 body {
     padding-top: 50px;
-    font-size: 140%;
 }
 
 .navbar-fixed-top {
@@ -53,4 +52,9 @@ body {
 }
 .main .page-header {
     margin-top: 0;
+}
+
+.table_item_id {
+    width: 1px;
+    text-align: center;
 }
