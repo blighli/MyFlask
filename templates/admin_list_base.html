@@ -7,30 +7,42 @@
     <script src="{{ url_for('static',filename='js/dataTables.bootstrap.js') }}"></script>
     <script>
         $(function() {
+
+
+            function createCheck() {
+                $(".table_item_id").each(function(){
+                    var item_id = $(this).text();
+                    $(this).html("<input type='checkbox' class='checkItem' value='" + item_id + "'>")
+                });
+
+
+                var checkAll = $("<input type='checkbox'>");
+                checkAll.click(function(){
+                    $(".checkItem").each(function(){
+                        $(this).prop("checked",checkAll.prop("checked"));
+                    });
+                });
+                $(".table_item_all").html(checkAll);
+            }
+
             var dataTable = $('#dataTable').dataTable({
                 "language": {
                     "url": "{{ url_for('static',filename='js/Chinese.json') }}"
                 },
                 lengthChange: false,
                 ordering: false,
+
+                "drawCallback": function( settings ) {
+                    createCheck();
+                },
+
                 "initComplete": function() {
+
+                    $("#dataTable").show();
+
                     var table_toolbar = $("#table_toolbar").detach();
                     var toolbar = $("#dataTable_filter").parent().prev();
                     toolbar.append(table_toolbar);
-
-                    $(".table_item_id").each(function(){
-                        var item_id = $(this).text();
-                        $(this).html("<input type='checkbox' class='checkItem' value='" + item_id + "'>")
-                    });
-
-
-                    var checkAll = $("<input type='checkbox'>");
-                    checkAll.click(function(){
-                        $(".checkItem").each(function(){
-                            $(this).prop("checked",checkAll.prop("checked"));
-                        });
-                    });
-                    $(".table_item_all").html(checkAll);
 
                     $("#table_btn_del").click(function(){
                         $(".checkItem").each(function(){
@@ -51,7 +63,7 @@
         <a id="table_btn_add" class='btn btn-default'><i class="glyphicon glyphicon-plus"></i> 新建</a>
         <a id="table_btn_del" class='btn btn-default'><i class="glyphicon glyphicon-trash"></i> 删除</a>
     </div>
-    <table id="dataTable" class="table table-bordered table-striped table-hover" cellspacing="0" width="100%">
+    <table id="dataTable" class="table table-bordered table-striped table-hover" cellspacing="0" width="100%" style="display: none">
         <thead>
         <tr>
             {% block tableHead %}

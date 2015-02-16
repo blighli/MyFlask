@@ -50,7 +50,7 @@ def admin_edit_role(roleId):
 
 @app.route('/admin/roles/')
 def admin_list_role():
-    items = range(0,100)
+    items = range(0,10000)
     return render_template("admin_list_role.html", items=items)
 
 
