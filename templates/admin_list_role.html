@@ -9,7 +9,7 @@
     <th>描述</th>
 {% endblock %}
 {% block tableRow %}
-    {{ table_select(item) }}
-    <td><a href="{{ url_for('admin_edit_role',roleId=item) }}">管理员</a></td>
-    <td>负责系统的日常维护工作</td>
+    {{ table_select(item.id) }}
+    <td><a href="{{ url_for('admin_edit_role',roleId=item.id) }}">{{ item.name }}</a></td>
+    <td>{{ item.desc }}</td>
 {% endblock %}
