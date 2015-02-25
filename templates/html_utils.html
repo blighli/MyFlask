@@ -1,0 +1,17 @@
+{% macro css_file(filename) %}
+    <link href="{{ url_for('static',filename='css/'+filename) }}" rel="stylesheet">
+{% endmacro %}
+
+{% macro js_file(filename) %}
+    <script src="{{ url_for('static',filename='js/'+filename) }}"></script>
+{% endmacro %}
+
+{% macro table_select(id) %}
+    <td class="table_select_cell">
+        {% if id == "all" %}
+            <input type='checkbox' class="table_select_all">
+        {% else %}
+            <input type="checkbox" class="table_select_id" value="{{ id }}">
+        {% endif %}
+    </td>
+{% endmacro %}

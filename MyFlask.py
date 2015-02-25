@@ -5,6 +5,8 @@ from flask.ext.wtf import Form
 from wtforms import StringField, SelectMultipleField
 from wtforms.validators import DataRequired, Length
 
+from math import ceil
+
 
 funcs = {
     "a": "Name of a",
@@ -47,10 +49,15 @@ def admin_edit_role(roleId):
         return redirect(url_for("admin_list_role"))
     return render_template("admin_edit_role.html", form=form, roleId=roleId)
 
+class NoteItem:
+    def __init__(self, title, author):
+        self.title = title
+        self.author = author
+
 
 @app.route('/admin/roles/')
 def admin_list_role():
-    items = range(0,10000)
+    items = range(0,1000)
     return render_template("admin_list_role.html", items=items)
 
 

@@ -1,57 +1,41 @@
-{% extends "admin_common_base.html" %}
+{% extends "admin_base.html" %}
 {% block css %}
-    <link href="{{ url_for('static',filename='css/dataTables.bootstrap.css') }}" rel="stylesheet">
+    {{ css_file("dataTables.bootstrap.css") }}
 {% endblock %}
 {% block js %}
-    <script src="{{ url_for('static',filename='js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ url_for('static',filename='js/dataTables.bootstrap.js') }}"></script>
+    {{ js_file("jquery.dataTables.min.js") }}
+    {{ js_file("dataTables.bootstrap.js") }}
     <script>
         $(function() {
-
-
-            function createCheck() {
-                $(".table_item_id").each(function(){
-                    var item_id = $(this).text();
-                    $(this).html("<input type='checkbox' class='checkItem' value='" + item_id + "'>")
-                });
-
-
-                var checkAll = $("<input type='checkbox'>");
-                checkAll.click(function(){
-                    $(".checkItem").each(function(){
-                        $(this).prop("checked",checkAll.prop("checked"));
-                    });
-                });
-                $(".table_item_all").html(checkAll);
-            }
-
             var dataTable = $('#dataTable').dataTable({
-                "language": {
+                language: {
                     "url": "{{ url_for('static',filename='js/Chinese.json') }}"
                 },
                 lengthChange: false,
                 ordering: false,
-
-                "drawCallback": function( settings ) {
-                    createCheck();
-                },
-
-                "initComplete": function() {
-
+                initComplete: function() {
                     $("#dataTable").show();
-
                     var table_toolbar = $("#table_toolbar").detach();
                     var toolbar = $("#dataTable_filter").parent().prev();
                     toolbar.append(table_toolbar);
-
-                    $("#table_btn_del").click(function(){
-                        $(".checkItem").each(function(){
-                            if($(this).prop("checked")){
+                },
+                drawCallback: function() {
+                    var table_select_all = $(".table_select_all");
+                    table_select_all.prop("checked", null);
+                    var table_select_id = $(".table_select_id");
+                    table_select_id.prop("checked", null);
+                    table_select_all.click(function () {
+                        table_select_id.each(function () {
+                            $(this).prop("checked", table_select_all.prop("checked"));
+                        });
+                    });
+                    $("#table_btn_del").click(function () {
+                        table_select_id.each(function () {
+                            if ($(this).prop("checked")) {
                                 console.log($(this).prop("value"));
                             }
                         });
                     });
-
                 }
             });
         } );
