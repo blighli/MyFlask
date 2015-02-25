@@ -21,20 +21,25 @@
                 },
                 drawCallback: function() {
                     var table_select_all = $(".table_select_all");
-                    table_select_all.prop("checked", null);
                     var table_select_id = $(".table_select_id");
-                    table_select_id.prop("checked", null);
+                    table_select_all.prop("checked", false);
+                    table_select_id.prop("checked", false);
+                    table_select_all.off();
                     table_select_all.click(function () {
                         table_select_id.each(function () {
                             $(this).prop("checked", table_select_all.prop("checked"));
                         });
                     });
-                    $("#table_btn_del").click(function () {
+                    var table_btn_del = $("#table_btn_del");
+                    table_btn_del.off();
+                    table_btn_del.click(function () {
+                        var ids = [];
                         table_select_id.each(function () {
                             if ($(this).prop("checked")) {
-                                console.log($(this).prop("value"));
+                                ids.push($(this).prop("value"));
                             }
                         });
+                        console.log(ids.join(","));
                     });
                 }
             });
@@ -44,8 +49,8 @@
 
 {% block mainContent %}
     <div id="table_toolbar" class="btn-group" role="group">
-        <a id="table_btn_add" class='btn btn-default'><i class="glyphicon glyphicon-plus"></i> 新建</a>
-        <a id="table_btn_del" class='btn btn-default'><i class="glyphicon glyphicon-trash"></i> 删除</a>
+        <a id="table_btn_new" class='btn btn-default' href="new"><i class="glyphicon glyphicon-plus"></i> 新建</a>
+        <a id="table_btn_del" class='btn btn-default' href="#"><i class="glyphicon glyphicon-trash"></i> 删除</a>
     </div>
     <table id="dataTable" class="table table-bordered table-striped table-hover" cellspacing="0" width="100%" style="display: none">
         <thead>
