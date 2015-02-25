@@ -1,4 +1,5 @@
 {% extends "admin_base.html" %}
+{% from "html_utils.html" import confirm_dialog %}
 {% block css %}
     {{ css_file("dataTables.bootstrap.css") }}
 {% endblock %}
@@ -39,7 +40,28 @@
                                 ids.push($(this).prop("value"));
                             }
                         });
-                        console.log(ids.join(","));
+
+                        if(ids.length > 0)
+                        {
+                            $("#number_of_items").html(ids.length);
+                            $("#confirm_del").modal('show');
+                            var confirm_btn = $("#confirm_del .btn-primary");
+                            confirm_btn.off();
+                            confirm_btn.click(function() {
+                                console.log(ids.join(","));
+                                $("#confirm_del").modal('hide');
+
+                                $.ajax({
+                                    url: "{{ url_for('admin_role_del') }}",
+                                    type: "DELETE",
+                                    data: {ids: ids}
+                                }).done(function() {
+                                    location.reload();
+                                });
+                            });
+                        }
+
+                        return false;
                     });
                 }
             });
@@ -69,4 +91,8 @@
         {% endfor %}
         </tbody>
     </table>
+{% endblock %}
+
+{% block otherContents %}
+    {{ confirm_dialog("confirm_del","删除确认","你确定要删除这<span id='number_of_items'></span>项吗？") }}
 {% endblock %}

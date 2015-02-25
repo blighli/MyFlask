@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, render_template
+from flask import Flask, redirect, url_for, render_template, request
 
 
 from flask.ext.wtf import Form
@@ -8,12 +8,12 @@ from wtforms.validators import DataRequired, Length
 from math import ceil
 
 
-funcs = {
-    "a": "Name of a",
-    "a.1": "Name of a.1",
-    "a.2": "Name of a.2",
-    "a.3": "Name of a.3",
-    "a.4": "Name of a.4",
+PRIVILEGES = {
+    "admin": "后台管理",
+    "admin.role": "角色管理",
+    "admin.role.new": "添加角色",
+    "admin.user": "用户管理",
+    "admin.user.new": "添加用户",
     "b": "Name of b",
     "b.1": "Name of b.1",
     "b.2": "Name of b.2",
@@ -27,7 +27,7 @@ class RoleForm(Form):
         locales = ["zh_CN"]
     name = StringField("角色")
     desc = StringField("描述")
-    funcs = SelectMultipleField("权限", choices=sorted([(k,v) for k,v in funcs.items()]))
+    funcs = SelectMultipleField("权限", choices=sorted([(k,v) for k,v in PRIVILEGES.items()]))
 
 
 app = Flask(__name__)
@@ -50,7 +50,14 @@ def admin_role_new():
 
 @app.route('/admin/roles/', methods=['POST'])
 def admin_role_add():
+    print("admin_role_add")
     return redirect(url_for("admin_role_list"))
+
+@app.route('/admin/roles/', methods=['DELETE'])
+def admin_role_del():
+    print("admin_role_del")
+    print(request.form.getlist("ids[]"))
+    return "ok", 200
 
 @app.route('/admin/roles/<roleId>', methods=['GET', 'POST'])
 def admin_edit_role(roleId):
