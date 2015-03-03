@@ -1,0 +1,108 @@
+
+/* AJ_WAS_HERE */
+.table td {
+    font-size: 12px;
+}
+
+.table thead, .table tfoot, .table tbody tr th {
+    font-size: 12px;
+}
+
+.table-small {
+  font-size: 10px;
+}
+
+.member-icons {
+	float: left; 
+	width: 24px;
+	margin-right: 8px;
+}
+
+.member-title {
+	color: #333;
+}
+.member-title-bold {
+	color: #000;
+        font-weight: bold;
+}
+.bg-time-long {
+	background-color:#F5B43C;
+}
+.bg-time-late {
+	background-color:#F53C3C;
+}
+.member-title-dim {
+	color: #999;
+}
+
+search-results-left {
+	float:left;
+}
+
+search-results-right {
+	float: right;
+}
+
+.autocomplete-container {
+     margin:5px 0 0 0;
+     padding:4px;
+     border:1px solid #cccccc;
+}
+
+.autocomplete-title {
+    font-size:14px;
+    color:#333;
+    font-weight:bold;
+}
+
+.autocomplete-left {
+    font-size:11px;
+    color:#666;
+    float:left;
+}
+
+.autocomplete-right {
+    font-size:11px;
+    color:#666;
+    float:right;
+    text-align:right;
+}
+
+.autocomplete-space {
+    clear:both;
+}
+
+.member-bg-denied {
+    background-color:#ff9999;
+}
+
+.member-bg-pending {
+    background-color:#ff9933;
+}
+
+.gray {color: #dde;}
+.black {color: #000;}
+.brightorange { color: #f60; }
+
+.dispatchnotes {
+    font-size:11px;
+}
+
+#tasks-container {
+    width: 20%;
+    z-index:500;
+    top:60px;
+    right:0;
+}
+
+#dutylist {
+    padding:8px;
+    background-color: #BDCEDB;
+    background-image: url('/images/patterns/dutybg.png');
+}
+
+#duty-heading {
+    cursor: pointer;
+}
+
+.ui-autocomplete-loading {background:url('/images/preloaders/blue/2.gif') no-repeat right center;}
