@@ -50,6 +50,7 @@ $(document).ready(function() {
 	// now the digit 0 on your mask pattern will be interpreted 
 	// as valid characters like 0,1,2,3,4,5,6,7,8,9 and *
 	$('.custom').mask('00/00/0000', {'translation': {0: '[0-9*]'}});
+
  	
  	//------------- Spinners -------------//
  	$("#spinner").spinner();
